@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #3b3b3b;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  background: #FAEBD7;
+}
+
+.header
+{
+background-repeat:no-repeat;
+height:111px;
+width:738px;
+}
+
+.headerTitle
+{
+position:relative;
+left:30px;
+top:30px;
+color:#283823;
+text-align:left;
+font-size:36px;
+font-weight:bold;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding: 40px;
+  max-width: 800px;
+}
+
+.table {
+  margin: 0 0 40px 0;
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  display: table;
+}
+@media screen and (max-width: 580px) {
+  .table {
+    display: block;
+  }
+}
+
+.row {
+  display: table-row;
+  background: #f6f6f6;
+}
+.row:nth-of-type(odd) {
+  background: #e9e9e9;
+}
+.row.header {
+  font-weight: 900;
+  color: #000000;
+  background: #B8860B;
+}
+.row.green {
+  background: #27ae60;
+}
+.row.blue {
+  background: #2980b9;
+}
+@media screen and (max-width: 580px) {
+  .row {
+    padding: 8px 0;
+    display: block;
+  }
+}
+
+.cell {
+  padding: 6px 12px;
+  display: table-cell;
+}
+
+.cellValid {
+  padding: 6px 12px;
+  display: table-cell;
+}
+
+.cellInValid {
+  padding: 6px 12px;
+  display: table-cell;
+  background: #FF7F50;
+  
+}
+
+
+
+
+@media screen and (max-width: 580px) {
+  .cell {
+    padding: 2px 12px;
+    display: block;
+  }
+}
+</style>
+<script>
+window.onload = function(){
+	var x = document.createElement("TABLE");
+    x.setAttribute("id", "myTable");
+	x.setAttribute("class", "table");
+    document.body.appendChild(x);
+	
+	var header = document.createElement("TR");
+	header.setAttribute("id", "header1");
+	header.setAttribute("class", "row header");
+	document.getElementById("myTable").appendChild(header);
+	
+	var name_TH = document.createElement("TD");
+   var violations_TH = document.createElement("TD");
+   var accidents_TH = document.createElement("TD");
+   var openCompliants_TH = document.createElement("TD");
+   var updatedCoverage_TH = document.createElement("TD");
+   var prediction_TH = document.createElement("TD");
+   var probability_TH = document.createElement("TD");
+   
+   name_TH.setAttribute("class", "cell");
+   violations_TH.setAttribute("class", "cell");
+   accidents_TH.setAttribute("class", "cell");
+   openCompliants_TH.setAttribute("class", "cell");
+   updatedCoverage_TH.setAttribute("class", "cell");
+   prediction_TH.setAttribute("class", "cell");
+   probability_TH.setAttribute("class", "cell");
+   
+    var name_LB = document.createTextNode("Customer Name");
+	var violations_LB = document.createTextNode("Number of Violations");
+	var accidents_LB = document.createTextNode("Number of Accidents");
+	var openCompliants_LB = document.createTextNode("Number of Open Complaints");
+	var updatedCoverage_LB = document.createTextNode("Updated Coverage");
+	var prediction_LB = document.createTextNode("Valid/Fraudulent Claim");
+	var probability_LB = document.createTextNode("Probability");
+   
+   name_TH.appendChild(name_LB);
+   violations_TH.appendChild(violations_LB);
+   accidents_TH.appendChild(accidents_LB);
+   openCompliants_TH.appendChild(openCompliants_LB);
+  updatedCoverage_TH.appendChild(updatedCoverage_LB);
+   prediction_TH.appendChild(prediction_LB);
+   probability_TH.appendChild(probability_LB);
+   
+    document.getElementById("header1").appendChild(name_TH);
+	document.getElementById("header1").appendChild(violations_TH);
+	document.getElementById("header1").appendChild(accidents_TH);
+	document.getElementById("header1").appendChild(openCompliants_TH);
+	document.getElementById("header1").appendChild(updatedCoverage_TH);
+	document.getElementById("header1").appendChild(prediction_TH);
+	document.getElementById("header1").appendChild(probability_TH);
+	
+	
+
+for(var i=0; i < 5; i++) {
+   var y = document.createElement("TR");
+    y.setAttribute("id", "myTr"+i);
+	y.setAttribute("class", "row");
+	
+    document.getElementById("myTable").appendChild(y);
+	var name="";
+	var violations="";
+	var accidents="";
+	var openCompliants="";
+	var updatedCoverage="";
+	var prediction="";
+	var probability="";
+	
+	if(i==0)
+	{
+	 name="{{data[0]["Name"]}}";
+	 violations="{{data[0]["NumberofViolations"]}}";
+	 accidents="{{data[0]["NumberofAccidents"]}}";
+	 openCompliants="{{data[0]["NumberofOpenComplaints"]}}";
+	 updatedCoverage="{{data[0]["UpdatedCoverage"]}}";
+	 prediction="{{data[0]["Prediction"]}}";
+	 probability="{{data[0]["probability"]}}";
+	}
+	else if(i==1)
+	{
+	 name="{{data[1]["Name"]}}";
+	 violations="{{data[1]["NumberofViolations"]}}";
+	 accidents="{{data[1]["NumberofAccidents"]}}";
+	 openCompliants="{{data[1]["NumberofOpenComplaints"]}}";
+	  updatedCoverage="{{data[1]["UpdatedCoverage"]}}";
+	 prediction="{{data[1]["Prediction"]}}";
+	 probability="{{data[1]["probability"]}}";
+	}
+	else if(i==2)
+	{
+	name="{{data[2]["Name"]}}";
+	 violations="{{data[2]["NumberofViolations"]}}";
+	 accidents="{{data[2]["NumberofAccidents"]}}";
+	 openCompliants="{{data[2]["NumberofOpenComplaints"]}}";
+	  updatedCoverage="{{data[2]["UpdatedCoverage"]}}";
+	 prediction="{{data[2]["Prediction"]}}";
+	 probability="{{data[2]["probability"]}}";
+	}
+	else if(i==3)
+	{
+	 name="{{data[3]["Name"]}}";
+	 violations="{{data[3]["NumberofViolations"]}}";
+	 accidents="{{data[3]["NumberofAccidents"]}}";
+	 openCompliants="{{data[3]["NumberofOpenComplaints"]}}";
+	  updatedCoverage="{{data[3]["UpdatedCoverage"]}}";
+	 prediction="{{data[3]["Prediction"]}}";
+	 probability="{{data[3]["probability"]}}";
+	}
+	else if(i==4)
+	{
+	 name="{{data[4]["Name"]}}";
+	 violations="{{data[4]["NumberofViolations"]}}";
+	 accidents="{{data[4]["NumberofAccidents"]}}";
+	 openCompliants="{{data[4]["NumberofOpenComplaints"]}}";
+	  updatedCoverage="{{data[4]["UpdatedCoverage"]}}";
+	 prediction="{{data[4]["Prediction"]}}";
+	 probability="{{data[4]["probability"]}}";
+	}
+	   
+   var name_TD = document.createElement("TD");
+   var violations_TD = document.createElement("TD");
+   var accidents_TD = document.createElement("TD");
+   var openCompliants_TD = document.createElement("TD");
+   var updatedCoverage_TD = document.createElement("TD");
+   var prediction_TD = document.createElement("TD");
+   var probability_TD = document.createElement("TD");
+   
+   name_TD.setAttribute("class", "cell");
+   violations_TD.setAttribute("class", "cell");
+   accidents_TD.setAttribute("class", "cell");
+   openCompliants_TD.setAttribute("class", "cell");
+   updatedCoverage_TD.setAttribute("class", "cell");
+   prediction_TD.setAttribute("class", "cell");
+   probability_TD.setAttribute("class", "cell");
+   
+   if(prediction=="Fraudulent Claim")
+   {
+   name_TD.setAttribute("class", "cellInValid");
+   violations_TD.setAttribute("class", "cellInValid");
+   accidents_TD.setAttribute("class", "cellInValid");
+   openCompliants_TD.setAttribute("class", "cellInValid");
+   updatedCoverage_TD.setAttribute("class", "cellInValid");
+   prediction_TD.setAttribute("class", "cellInValid");
+   probability_TD.setAttribute("class", "cellInValid");
+   }
+      
+    var name_TEXT = document.createTextNode(name);
+	var violations_TEXT = document.createTextNode(violations);
+	var accidents_TEXT = document.createTextNode(accidents);
+	var openCompliants_TEXT = document.createTextNode(openCompliants);
+	var updatedCoverage_TEXT = document.createTextNode(updatedCoverage);
+	var prediction_TEXT = document.createTextNode(prediction);
+	var probability_TEXT = document.createTextNode(probability);
+   
+   name_TD.appendChild(name_TEXT);
+   violations_TD.appendChild(violations_TEXT);
+   accidents_TD.appendChild(accidents_TEXT);
+   openCompliants_TD.appendChild(openCompliants_TEXT);
+   updatedCoverage_TD.appendChild(updatedCoverage_TEXT);
+   prediction_TD.appendChild(prediction_TEXT);
+   probability_TD.appendChild(probability_TEXT);
+   
+    document.getElementById("myTr"+i).appendChild(name_TD);
+	document.getElementById("myTr"+i).appendChild(violations_TD);
+	document.getElementById("myTr"+i).appendChild(accidents_TD);
+	document.getElementById("myTr"+i).appendChild(openCompliants_TD);
+	document.getElementById("myTr"+i).appendChild(updatedCoverage_TD);
+	document.getElementById("myTr"+i).appendChild(prediction_TD);
+	document.getElementById("myTr"+i).appendChild(probability_TD);
+  } 
+};
+</script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+</head>
+
+<body>
+<div class="header">
+    <div class="headerTitle">Detection of Fraudulent Claim</div>         
+            
+</div>
+</body>
+</html>
